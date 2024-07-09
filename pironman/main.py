@@ -252,15 +252,15 @@ def main():
                 DISK_used = str(DISK_stats[1])
                 DISK_perc = float(DISK_stats[3])
                 # ip address
-                ip = None
-                IPs = getIP()
+                ip = "    Ryan S Hatch  "
+                #IPs = getIP()
 
-                if 'wlan0' in IPs and IPs['wlan0'] != None and IPs['wlan0'] != '':
-                    ip = IPs['wlan0']
-                elif 'eth0' in IPs and IPs['eth0'] != None and IPs['eth0'] != '':
-                    ip = IPs['eth0']
-                else:
-                    ip = 'DISCONNECT'
+                #if 'wlan0' in IPs and IPs['wlan0'] != None and IPs['wlan0'] != '':
+                    #ip = IPs['wlan0']
+                #elif 'eth0' in IPs and IPs['eth0'] != None and IPs['eth0'] != '':
+                    #ip = IPs['eth0']
+                #else:
+                    #ip = 'DISCONNECT'
 
                 # display info
                 ip_rect = Rect(48, 0, 81, 10)
@@ -269,7 +269,7 @@ def main():
                 rom_info_rect = Rect(46, 41, 81, 10)
                 rom_rect = Rect(46, 53, 81, 10)
 
-                draw_text('CPU',6,0)
+                draw_text('<3 <3',6,0)
                 draw.pieslice((0, 12, 30, 42), start=180, end=0, fill=0, outline=1)
                 draw.pieslice((0, 12, 30, 42), start=180, end=int(180+180*CPU_usage*0.01), fill=1, outline=1)
                 draw_text('{:^5.1f} %'.format(CPU_usage),2,27)
@@ -284,12 +284,12 @@ def main():
                     pcent = (CPU_temp_F-32)/1.8
                     draw.pieslice((0, 33, 30, 63), start=int(180-180*pcent*0.01), end=180, fill=1, outline=1)
                 # RAM
-                draw_text('RAM: {}/{} GB'.format(RAM_used,RAM_total),*ram_info_rect.coord())
+                draw_text('Memory: {}/{}'.format(RAM_used,RAM_total),*ram_info_rect.coord())
                 # draw_text('{:>5.1f}'.format(RAM_usage)+' %',92,0)
                 draw.rectangle(ram_rect.rect(), outline=1, fill=0)
                 draw.rectangle(ram_rect.rect(RAM_usage), outline=1, fill=1)
                 # Disk
-                draw_text('ROM: {}/{} GB'.format(DISK_used ,DISK_total), *rom_info_rect.coord())
+                draw_text('Storage: {}/{}'.format(DISK_used ,DISK_total), *rom_info_rect.coord())
                 # draw_text('     ',72,32)
                 # draw_text(''+' G',72,32)
                 draw.rectangle(rom_rect.rect(), outline=1, fill=0)
@@ -322,10 +322,10 @@ def main():
                     oled.on()
                     draw.rectangle((0,0,width,height), outline=0, fill=0)
                     # draw_text('POWER OFF',36,24)
-                    text_width, text_height = font_12.getsize('POWER OFF')
+                    text_width, text_height = font_12.getsize('GOOD NIGHT!')
                     text_x = int((width - text_width)/2-1)
                     text_y = int((height - text_height)/2-1)
-                    draw.text((text_x, text_y), text='POWER OFF', font=font_12, fill=1)
+                    draw.text((text_x, text_y), text='GOOD NIGHT!', font=font_12, fill=1)
                     oled.image(image)
                     oled.display()
                     while not get_io(power_key_pin):
